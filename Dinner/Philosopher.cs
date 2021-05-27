@@ -37,7 +37,7 @@ namespace Dinner
 
                     Thread.Sleep(1);
                     forks[secondFork].IsBusy = true;
-                    
+                    Thread.Sleep(10);
                     forks[firstFork].IsBusy = false;
                     Thread.Sleep(1);
                     forks[secondFork].IsBusy = false;
@@ -58,7 +58,8 @@ namespace Dinner
         }
         private void Eat(List<Fork> forks)
         {
-            if (forks.Where(f => f.IsBusy).Count() < forks.Count())
+            //Если 4 вилки из 5 заняты, не забираем 5
+           if (forks.Where(f => f.IsBusy).Count() < forks.Count())
             {
                 GetFork(forks);
                 Thread.Sleep(1);
